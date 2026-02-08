@@ -465,6 +465,12 @@ class PatternDetector5Min:
         if not self.ema_config['enabled']:
             return None
         
+        # CHECK: Minimum candle volume (turnover)
+        min_volume = self.ema_config.get('min_candle_volume_5min', 100.0)
+        current_volume = current_candle.get('turnover', 0)
+        if current_volume < min_volume:
+            return None
+        
         threshold = self.ema_config['threshold_percent'] / 100.0
         lookback_max = self.ema_config['lookback_window']
         lookback_min = self.ema_config['min_lookback_candles']
@@ -534,5 +540,6 @@ class PatternDetector5Min:
                 # Update last detection
                 self.ema_last_detection_candle = self.db.get_candle_count()
                 
-                return pattern_info    
+                return pattern_info
+        
         return None
