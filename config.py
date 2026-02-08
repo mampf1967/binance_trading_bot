@@ -143,6 +143,10 @@ EMA_MOMENTUM = {
     "lookback_window": 10,              # Check EMA9 gain over last N candles
     "min_lookback_candles": 6,          # Minimum window size to check (e.g., 6-10)
     
+    # === VOLUME FILTERS ===
+    "min_candle_volume_1min": 50.0,     # Minimum turnover (USDC) per 1min candle
+    "min_candle_volume_5min": 100.0,    # Minimum turnover (USDC) per 5min candle
+    
     # === RECENCY FILTER ===
     "recency_filter_enabled": True,     # Skip if pattern detected recently
     "recency_filter_candles": 60,       # Skip if detected within last N candles
